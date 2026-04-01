@@ -12,6 +12,7 @@ const navItems = [
   { href: '/clients', label: 'Clients', icon: '👤' },
   { href: '/sequences', label: 'Sequences', icon: '📧' },
   { href: '/analytics', label: 'Analytics', icon: '📊' },
+  { href: '/feedback', label: 'Feedback', icon: '💬' },
   { href: '/settings', label: 'Settings', icon: '⚙️' },
 ]
 

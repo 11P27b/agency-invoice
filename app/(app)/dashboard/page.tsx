@@ -13,6 +13,23 @@ export default async function DashboardPage() {
     .eq('owner_user_id', user!.id)
     .single()
 
+  // Onboarding checklist data
+  const { count: clientCount } = await supabase
+    .from('clients')
+    .select('id', { count: 'exact', head: true })
+    .eq('workspace_id', workspace?.id ?? '')
+  const { count: invoiceCount } = await supabase
+    .from('invoices')
+    .select('id', { count: 'exact', head: true })
+    .eq('workspace_id', workspace?.id ?? '')
+  const { data: defaultSeq } = await supabase
+    .from('follow_up_sequences')
+    .select('id')
+    .eq('workspace_id', workspace?.id ?? '')
+    .eq('is_default', true)
+    .maybeSingle()
+  const showOnboarding = (clientCount ?? 0) === 0 || (invoiceCount ?? 0) === 0
+
   if (!workspace) {
     return <div className="p-8 text-gray-500">Setting up your workspace...</div>
   }
@@ -47,6 +64,70 @@ export default async function DashboardPage() {
         <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
         <p className="text-gray-500 mt-1">{workspace.name}</p>
       </div>
+
+      {/* Onboarding checklist — shown until workspace is set up */}
+      {showOnboarding && (
+        <div className="mb-8 bg-indigo-50 border border-indigo-200 rounded-xl p-6">
+          <h2 className="font-semibold text-gray-900 mb-1">Get started with Settled</h2>
+          <p className="text-sm text-gray-500 mb-4">Complete these steps to start automating your invoice follow-ups.</p>
+          <div className="space-y-3">
+            <div className="flex items-center gap-3">
+              <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 ${
+                (clientCount ?? 0) > 0 ? 'bg-green-500 text-white' : 'bg-white border-2 border-indigo-300 text-indigo-600'
+              }`}>
+                {(clientCount ?? 0) > 0 ? '✓' : '1'}
+              </div>
+              <div className="flex-1">
+                <p className={`text-sm font-medium ${(clientCount ?? 0) > 0 ? 'text-gray-400 line-through' : 'text-gray-800'}`}>
+                  Add your first client
+                </p>
+              </div>
+              {(clientCount ?? 0) === 0 && (
+                <Link href="/clients/new" className="text-xs text-indigo-600 font-medium hover:underline flex-shrink-0">
+                  Add client →
+                </Link>
+              )}
+            </div>
+            <div className="flex items-center gap-3">
+              <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 ${
+                (invoiceCount ?? 0) > 0 ? 'bg-green-500 text-white' : 'bg-white border-2 border-indigo-300 text-indigo-600'
+              }`}>
+                {(invoiceCount ?? 0) > 0 ? '✓' : '2'}
+              </div>
+              <div className="flex-1">
+                <p className={`text-sm font-medium ${(invoiceCount ?? 0) > 0 ? 'text-gray-400 line-through' : 'text-gray-800'}`}>
+                  Add an invoice
+                </p>
+              </div>
+              {(invoiceCount ?? 0) === 0 && (
+                <Link href="/invoices/new" className="text-xs text-indigo-600 font-medium hover:underline flex-shrink-0">
+                  Add invoice →
+                </Link>
+              )}
+            </div>
+            <div className="flex items-center gap-3">
+              <div className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 ${
+                defaultSeq ? 'bg-green-500 text-white' : 'bg-white border-2 border-indigo-300 text-indigo-600'
+              }`}>
+                {defaultSeq ? '✓' : '3'}
+              </div>
+              <div className="flex-1">
+                <p className={`text-sm font-medium ${defaultSeq ? 'text-gray-400 line-through' : 'text-gray-800'}`}>
+                  Review your follow-up sequence
+                </p>
+                {!defaultSeq && (
+                  <p className="text-xs text-gray-500">Your default sequence is pre-configured — check it out</p>
+                )}
+              </div>
+              {!defaultSeq && (
+                <Link href="/sequences" className="text-xs text-indigo-600 font-medium hover:underline flex-shrink-0">
+                  View sequences →
+                </Link>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Summary cards */}
       <div className="grid grid-cols-3 gap-6 mb-10">

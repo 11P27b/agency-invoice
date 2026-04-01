@@ -41,6 +41,9 @@ export async function proxy(request: NextRequest) {
     return NextResponse.redirect(url)
   }
 
+  // Forward pathname as a header so server layouts can read it for trial gating
+  supabaseResponse.headers.set('x-pathname', request.nextUrl.pathname)
+
   return supabaseResponse
 }
 

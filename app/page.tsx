@@ -115,10 +115,10 @@ export default function MarketingPage() {
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-4">
             QuickBooks reminders get ignored.
             <br />
-            Your calls don't.
+            Your calls don&apos;t.
           </h2>
           <p className="text-center text-gray-500 text-lg mb-14 max-w-xl mx-auto">
-            The problem isn't invoicing. It's the follow-up — and existing tools don't get it right.
+            The problem isn&apos;t invoicing. It&apos;s the follow-up — and existing tools don&apos;t get it right.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -141,9 +141,9 @@ export default function MarketingPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-3">You're their interest-free bank</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">You&apos;re their interest-free bank</h3>
               <p className="text-gray-500 text-sm leading-relaxed">
-                Every day a payment sits overdue is a day you're financing your client's business. The average
+                Every day a payment sits overdue is a day you&apos;re financing your client&apos;s business. The average
                 service business writes off $18K–$40K/year in late or uncollected revenue. That ends now.
               </p>
             </div>
@@ -156,7 +156,7 @@ export default function MarketingPage() {
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-3">Following up feels humiliating</h3>
               <p className="text-gray-500 text-sm leading-relaxed">
-                You did the work. You invoiced. Now you're supposed to beg? Settled handles the entire follow-up
+                You did the work. You invoiced. Now you&apos;re supposed to beg? Settled handles the entire follow-up
                 sequence — professionally, persistently, and without ever making you feel like a pushover.
               </p>
             </div>
@@ -204,7 +204,7 @@ export default function MarketingPage() {
       {/* Social proof quotes */}
       <section className="py-16 px-5 bg-gray-50">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-bold text-center text-gray-900 mb-10">We've heard it over and over</h2>
+          <h2 className="text-2xl font-bold text-center text-gray-900 mb-10">We&apos;ve heard it over and over</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {[
               {

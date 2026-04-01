@@ -42,20 +42,20 @@ export function WaitlistForm({ formId, variant = 'default' }: WaitlistFormProps)
     if (variant === 'footer') {
       return (
         <div className="p-4 rounded-xl bg-brand-700 text-white text-sm font-medium">
-          You're in. We'll be in touch.
+          You&apos;re in. We&apos;ll be in touch.
         </div>
       )
     }
     if (variant === 'pricing') {
       return (
         <div className="p-4 rounded-xl bg-white border border-brand-300 text-brand-800 text-sm font-medium">
-          You're on the list! We'll email you when your spot opens.
+          You&apos;re on the list! We&apos;ll email you when your spot opens.
         </div>
       )
     }
     return (
       <div className="p-4 rounded-xl bg-brand-50 border border-brand-200 text-brand-800 text-sm font-medium">
-        You're on the list. We'll reach out when your spot is ready.
+        You&apos;re on the list. We&apos;ll reach out when your spot is ready.
       </div>
     )
   }

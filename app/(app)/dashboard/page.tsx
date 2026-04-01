@@ -1,5 +1,5 @@
 import { createClient } from '@/lib/supabase/server'
-import { formatCurrency, formatDate, invoiceStatusColor, daysOverdue } from '@/lib/utils'
+import { formatCurrency, formatDate, daysOverdue } from '@/lib/utils'
 import Link from 'next/link'
 
 export default async function DashboardPage() {

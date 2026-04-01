@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import type { DbFollowUpStep, FollowUpTone } from '@/types/database'
 
-interface Step extends DbFollowUpStep {}
+type Step = DbFollowUpStep
 
 interface Sequence {
   id: string

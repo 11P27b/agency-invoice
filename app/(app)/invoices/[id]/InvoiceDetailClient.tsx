@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import type { DbFollowUpStep } from '@/types/database'
 
 interface Props {
@@ -21,7 +22,7 @@ export function InvoiceDetailClient({ invoiceId, invoiceStatus, steps }: Props) 
   if (steps.length === 0) {
     return (
       <div className="bg-yellow-50 border border-yellow-200 rounded-xl px-5 py-4 text-sm text-yellow-700">
-        No follow-up steps configured. <a href="/sequences" className="underline">Set up a sequence</a> to enable sending.
+        No follow-up steps configured. <Link href="/sequences" className="underline">Set up a sequence</Link> to enable sending.
       </div>
     )
   }

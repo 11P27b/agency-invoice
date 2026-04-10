@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import { WaitlistForm } from '@/components/marketing/WaitlistForm'
+import { createClient } from '@/lib/supabase/server'
+import { redirect } from 'next/navigation'
 
 export const metadata: Metadata = {
   title: 'Settled — Get paid without the awkward conversation',
@@ -32,7 +34,24 @@ export const metadata: Metadata = {
   },
 }
 
-export default function MarketingPage() {
+export default async function MarketingPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ code?: string; error?: string }>
+}) {
+  const params = await searchParams
+
+  // If Supabase redirected here with a code (e.g. uri_allow_list fallback), forward to callback
+  if (params.code) {
+    redirect(`/auth/callback?code=${encodeURIComponent(params.code)}`)
+  }
+
+  // Logged-in users go straight to dashboard
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (user) {
+    redirect('/dashboard')
+  }
   return (
     <div className="font-sans antialiased bg-white text-gray-900">
       {/* Nav */}
